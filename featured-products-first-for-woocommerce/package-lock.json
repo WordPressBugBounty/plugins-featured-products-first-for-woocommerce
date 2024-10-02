@@ -1,0 +1,44 @@
+{
+  "name": "featured-products-first-for-woocommerce-plugatic",
+  "lockfileVersion": 2,
+  "requires": true,
+  "packages": {
+    "": {
+      "dependencies": {
+        "@wordpress/prettier-config": "^1.1.1",
+        "wp-prettier": "^2.2.1-beta-1"
+      }
+    },
+    "node_modules/@wordpress/prettier-config": {
+      "version": "1.1.1",
+      "resolved": "https://registry.npmjs.org/@wordpress/prettier-config/-/prettier-config-1.1.1.tgz",
+      "integrity": "sha512-qjpBK5KB2ieCLv+1fGNKRW4urf5tFN1eUn3Qy+JINxNwAx6Jj9uhfXA4AldCSnD+WkzsN2UgBvgAj5/SWwzRZQ==",
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/wp-prettier": {
+      "version": "2.2.1-beta-1",
+      "resolved": "https://registry.npmjs.org/wp-prettier/-/wp-prettier-2.2.1-beta-1.tgz",
+      "integrity": "sha512-+JHkqs9LC/JPp51yy1hzs3lQ7qeuWCwOcSzpQNeeY/G7oSpnF61vxt7hRh87zNRTr6ob2ndy0W8rVzhgrcA+Gw==",
+      "bin": {
+        "prettier": "bin-prettier.js"
+      },
+      "engines": {
+        "node": ">=10.13.0"
+      }
+    }
+  },
+  "dependencies": {
+    "@wordpress/prettier-config": {
+      "version": "1.1.1",
+      "resolved": "https://registry.npmjs.org/@wordpress/prettier-config/-/prettier-config-1.1.1.tgz",
+      "integrity": "sha512-qjpBK5KB2ieCLv+1fGNKRW4urf5tFN1eUn3Qy+JINxNwAx6Jj9uhfXA4AldCSnD+WkzsN2UgBvgAj5/SWwzRZQ=="
+    },
+    "wp-prettier": {
+      "version": "2.2.1-beta-1",
+      "resolved": "https://registry.npmjs.org/wp-prettier/-/wp-prettier-2.2.1-beta-1.tgz",
+      "integrity": "sha512-+JHkqs9LC/JPp51yy1hzs3lQ7qeuWCwOcSzpQNeeY/G7oSpnF61vxt7hRh87zNRTr6ob2ndy0W8rVzhgrcA+Gw=="
+    }
+  }
+}
