@@ -3,9 +3,9 @@ Contributors: pmbaldha, woocommerce9, freemius
 Tags: featured, product, woocommerce
 Donate link: http://prashantwp.com/
 Requires at least: 4.0
-Tested up to: 6.2.2
+Tested up to: 6.7
 Requires PHP: 5.6.0
-Stable tag: trunk
+Stable tag: 1.9.8
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -117,6 +117,12 @@ The free version of the Featured Product First for WooCommerce Plugin displays f
 9. Featured Product widget
 
 == Changelog ==
+
+= 1.9.7, May 22, 2025 =
+* TWEAK: Freemius library updated to the latest version.
+
+= 1.9.7, May 26, 2024 =
+* TWEAK: Freemius library updated to the latest version.
 
 = 1.9.6, July 21, 2023 =
 * TWEAK: Freemius library updated to the latest version.

@@ -6,18 +6,15 @@
 if ( !defined( 'ABSPATH' ) ) {
     exit;
 }
-class WFF_Premium
-{
+class WFF_Premium {
     /**
      * Constructor of class.
      * responsible for add all actions and filters hooks for Premium
      */
-    public function __construct()
-    {
+    public function __construct() {
     }
-    
-    public function wff_featured_products_ids_sort( $product_ids )
-    {
+
+    public function wff_featured_products_ids_sort( $product_ids ) {
         $no_of_featured_product_first = 5;
         if ( $no_of_featured_product_first > 0 ) {
             $product_ids = array_slice( $product_ids, 0, $no_of_featured_product_first );
@@ -44,13 +41,11 @@ class WFF_Premium
                 $sorted_product_ids = self::order_products_ids_by_field( $product_ids, 'post_date, ID', $order );
                 break;
             case 'price':
-                
                 if ( 'ASC' === $order ) {
                     $sorted_product_ids = self::order_products_ids_by_product_meta_lookup( $product_ids, 'min_price', 'DESC' );
                 } else {
                     $sorted_product_ids = self::order_products_ids_by_product_meta_lookup( $product_ids, 'max_price', 'ASC' );
                 }
-                
                 break;
             case 'popularity':
                 // Not Working
@@ -62,12 +57,6 @@ class WFF_Premium
                 $sorted_product_ids = self::order_products_ids_by_product_meta_lookup( $product_ids, 'average_rating', 'DESC' );
                 $sorted_product_ids = self::order_products_ids_by_product_meta_lookup( $sorted_product_ids, 'rating_count', 'DESC' );
                 break;
-                /*
-                case 'relevance' :
-                   $args['orderby'] = 'relevance';
-                   $args['order']   = 'DESC';
-                   break;
-                */
             /*
             case 'relevance' :
                $args['orderby'] = 'relevance';
@@ -79,13 +68,12 @@ class WFF_Premium
         }
         return $sorted_product_ids;
     }
-    
-    private function order_products_ids_by_meta( $product_ids, $meta_key, $order = 'ASC' )
-    {
-        if ( empty($product_ids) || empty($meta_key) ) {
+
+    private function order_products_ids_by_meta( $product_ids, $meta_key, $order = 'ASC' ) {
+        if ( empty( $product_ids ) || empty( $meta_key ) ) {
             return $product_ids;
         }
-        global  $wpdb ;
+        global $wpdb;
         $product_ids_for_sql = implode( ',', array_map( 'absint', $product_ids ) );
         $sorted_product_ids = $wpdb->get_col( $wpdb->prepare(
             'SELECT post_id FROM ' . $wpdb->postmeta . ' WHERE post_id IN ( %0s ) AND meta_key=%s ORDER BY meta_value %0s',
@@ -95,7 +83,7 @@ class WFF_Premium
         ) );
         return $sorted_product_ids;
     }
-    
+
     /**
      * Sort by looking in wc_product_meta_lookup table
      *
@@ -105,12 +93,11 @@ class WFF_Premium
      *
      * @return array sorted product ids
      */
-    private function order_products_ids_by_product_meta_lookup( $product_ids, $field, $order = 'ASC' )
-    {
-        if ( empty($product_ids) || empty($field) ) {
+    private function order_products_ids_by_product_meta_lookup( $product_ids, $field, $order = 'ASC' ) {
+        if ( empty( $product_ids ) || empty( $field ) ) {
             return $product_ids;
         }
-        global  $wpdb ;
+        global $wpdb;
         $product_ids_for_sql = implode( ',', array_map( 'absint', $product_ids ) );
         $sorted_product_ids = $wpdb->get_col( $wpdb->prepare(
             'SELECT product_id FROM ' . $wpdb->wc_product_meta_lookup . ' WHERE product_id	IN ( %0s ) ORDER BY %0s %0s, product_id DESC',
@@ -120,19 +107,18 @@ class WFF_Premium
         ) );
         return $sorted_product_ids;
     }
-    
-    private function get_orderby_value()
-    {
+
+    private function get_orderby_value() {
         $orderby_value = ( isset( $_GET['orderby'] ) ? sanitize_text_field( wp_unslash( $_GET['orderby'] ) ) : apply_filters( 'woocommerce_default_catalog_orderby', get_option( 'woocommerce_default_catalog_orderby' ) ) );
         return $orderby_value;
     }
-    
-    public function wff_no_of_featured_product_first_default_value( $default_value )
-    {
+
+    public function wff_no_of_featured_product_first_default_value( $default_value ) {
         $default_value = 0;
         return $default_value;
     }
 
 }
-global  $wff_premium ;
+
+global $wff_premium;
 $wff_premium = new WFF_Premium();

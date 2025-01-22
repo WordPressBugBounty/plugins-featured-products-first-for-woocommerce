@@ -1,19 +1,20 @@
 <?php
 
 /**
- * Plugin Name: Featured Products First for WooCommerce
+ * Plugin Name: Featured Products First for WooCommerce Pro
  * Plugin URI: https://prashantwp.com/
  * Description: Places featured products listed first On Shop Page, Category Archive Page, and Search Page.
- * Version: 1.9.6
+ * Version: 1.9.8
  * Author: WooCommerce  Expert - WooCommerce Developer - Featured Product First for WooCommerce Plugin Developer
  * Author URI: https://www.prashantwp.com/
  * Requires at least: 4.8.1
- * Tested up to: 5.9.3
+ * Tested up to: 6.7
  * Requires PHP: 5.6.0
  * Text Domain: featured-products-first-for-woocommerce
  * Domain Path: /languages/
+ * Requires Plugins: woocommerce
  * WC requires at least: 4.0
- * WC tested up to: 7.9.0
+ * WC tested up to: 9.6.0
  * License: GPL v3 or later
  * License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
  *
@@ -35,15 +36,12 @@
 if ( !defined( 'ABSPATH' ) ) {
     exit;
 }
-
 if ( !function_exists( 'wff' ) ) {
     /**
      * Create a helper function for easy SDK access.
      */
-    function wff()
-    {
-        global  $wff ;
-        
+    function wff() {
+        global $wff;
         if ( !isset( $wff ) ) {
             // Activate multisite network integration.
             if ( !defined( 'WP_FS__PRODUCT_1689_MULTISITE' ) ) {
@@ -61,24 +59,23 @@ if ( !function_exists( 'wff' ) ) {
                 'has_addons'      => false,
                 'has_paid_plans'  => true,
                 'trial'           => array(
-                'days'               => 30,
-                'is_require_payment' => true,
-            ),
+                    'days'               => 30,
+                    'is_require_payment' => true,
+                ),
                 'has_affiliation' => 'customers',
                 'menu'            => array(
-                'slug'       => 'featured-products-first-for-woocommerce',
-                'first-path' => 'admin.php?page=featured-products-first-for-woocommerce',
-                'parent'     => array(
-                'slug' => 'woocommerce',
-            ),
-            ),
+                    'slug'       => 'featured-products-first-for-woocommerce',
+                    'first-path' => 'admin.php?page=featured-products-first-for-woocommerce',
+                    'parent'     => array(
+                        'slug' => 'woocommerce',
+                    ),
+                ),
                 'is_live'         => true,
             ) );
         }
-        
         return $wff;
     }
-    
+
     // Init Freemius.
     wff();
     // Signal that SDK was initiated.
