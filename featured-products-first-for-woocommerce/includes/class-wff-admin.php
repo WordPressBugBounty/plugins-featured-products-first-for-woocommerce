@@ -132,7 +132,7 @@ class Wff_Admin {
 							'If you face any trouble, Please feel free to email me on %s any time. I am always happy to help you.',
 							'featured-products-first-for-woocommerce'
 						),
-						'<a href="mailto:prashant@prashantwp.com">prashant@prashantwp.com</a>'
+						'<a href="mailto:pmbaldha@gmail.com">pmbaldha@gmail.com</a>'
 					);
 					echo '<br/>';
 					printf(
@@ -351,12 +351,14 @@ class Wff_Admin {
 			return;
 		}
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only admin parameter.
 		if ( ! empty( $_GET['tab'] ) && 'featured_products_first' == $_GET['tab'] ) {
 			wp_enqueue_script(
 				'wff-admin-custom-js',
 				esc_url( WFF_URL . '/assets/js/admin-custom.js' ),
 				array( 'jquery' ),
-				WFF_VERSION
+				WFF_VERSION,
+				array( 'in_footer' => true, 'strategy' => 'defer' )
 			);
 		}
 	}

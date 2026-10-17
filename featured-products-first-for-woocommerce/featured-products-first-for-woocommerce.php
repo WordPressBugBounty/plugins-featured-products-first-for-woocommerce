@@ -1,20 +1,20 @@
 <?php
 
 /**
- * Plugin Name: Featured Products First for WooCommerce Pro
+ * Plugin Name: Featured Products First for WooCommerce
  * Plugin URI: https://prashantwp.com/
  * Description: Places featured products listed first On Shop Page, Category Archive Page, and Search Page.
- * Version: 1.9.8
- * Author: WooCommerce  Expert - WooCommerce Developer - Featured Product First for WooCommerce Plugin Developer
+ * Version: 1.10.0
+ * Author: Prashant Baldha
  * Author URI: https://www.prashantwp.com/
  * Requires at least: 4.8.1
- * Tested up to: 6.7
+ * Tested up to: 7.1
  * Requires PHP: 5.6.0
  * Text Domain: featured-products-first-for-woocommerce
  * Domain Path: /languages/
  * Requires Plugins: woocommerce
  * WC requires at least: 4.0
- * WC tested up to: 9.6.0
+ * WC tested up to: 10.8.1
  * License: GPL v3 or later
  * License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
  *
@@ -48,29 +48,32 @@ if ( !function_exists( 'wff' ) ) {
                 define( 'WP_FS__PRODUCT_1689_MULTISITE', true );
             }
             // Include Freemius SDK.
-            require_once dirname( __FILE__ ) . '/freemius/start.php';
+            // var_dump( file_exists( dirname( __FILE__ ) . '/vendor/freemius/start.php') );
+            // die;
+            require_once dirname( __FILE__ ) . '/vendor/freemius/start.php';
             $wff = fs_dynamic_init( array(
-                'id'              => '1689',
-                'slug'            => 'featured-products-first-for-woocommerce',
-                'type'            => 'plugin',
-                'public_key'      => 'pk_fcce2e3f8c351f2e0dcdc012ba146',
-                'is_premium'      => false,
-                'premium_suffix'  => 'Pro',
-                'has_addons'      => false,
-                'has_paid_plans'  => true,
-                'trial'           => array(
+                'id'               => '1689',
+                'slug'             => 'featured-products-first-for-woocommerce',
+                'type'             => 'plugin',
+                'public_key'       => 'pk_fcce2e3f8c351f2e0dcdc012ba146',
+                'is_premium'       => false,
+                'premium_suffix'   => 'Pro',
+                'has_addons'       => false,
+                'has_paid_plans'   => true,
+                'trial'            => array(
                     'days'               => 30,
                     'is_require_payment' => true,
                 ),
-                'has_affiliation' => 'customers',
-                'menu'            => array(
+                'has_affiliation'  => 'customers',
+                'menu'             => array(
                     'slug'       => 'featured-products-first-for-woocommerce',
                     'first-path' => 'admin.php?page=featured-products-first-for-woocommerce',
                     'parent'     => array(
                         'slug' => 'woocommerce',
                     ),
                 ),
-                'is_live'         => true,
+                'is_live'          => true,
+                'is_org_compliant' => true,
             ) );
         }
         return $wff;
@@ -99,3 +102,13 @@ if ( !function_exists( 'wff' ) ) {
         require_once WFF_DIR . '/includes/class-wff-admin.php';
     }
 }
+add_action( 'before_woocommerce_init', function () {
+    if ( class_exists( '\\Automattic\\WooCommerce\\Utilities\\FeaturesUtil' ) ) {
+        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+    }
+} );
+add_action( 'before_woocommerce_init', function () {
+    if ( class_exists( '\\Automattic\\WooCommerce\\Utilities\\FeaturesUtil' ) ) {
+        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'cart_checkout_blocks', __FILE__, true );
+    }
+} );

@@ -1,22 +1,20 @@
-=== Featured Products First for WooCommerce - A Extension of WooCommerce (WooCommerce Addon Plugin) ===
-Contributors: pmbaldha, woocommerce9, freemius
+=== Featured Products First for WooCommerce ===
+Contributors: pmbaldha
 Tags: featured, product, woocommerce
 Donate link: http://prashantwp.com/
-Requires at least: 4.0
-Tested up to: 6.7
+Requires at least: 4.8.1
+Tested up to: 7.1
 Requires PHP: 5.6.0
-Stable tag: 1.9.8
+Stable tag: 1.10.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-Displays your most profitable products first (top) in Product Listing and Earn more money with the Featured Product First for WooCommerce Plugin. The Featured Product First for WooCommerce places featured products listed on Shop Page, Search Page, and Category pages of WooCommerce.
+Displays your most profitable products first (top) in Product Listing and Earn more money with the Featured Product First for WooCommerce Plugin.
 
 == Description ==
 Featured Product First for WooCommerce allows you to displays featured product first everywhere with any sorting order. It helps you to boost your store's revenue. It provides a WooCommerce Featured Product sidebar widget.  It is fully compatible with to WooCommerce e-commerce WordPress plugin.
 
 Maximize your profitability  by putting your favorite products first. 💰️💰️💰️💰️
-
-**[Demo of Featured Product First For WooCommerce](https://prashantwp.com/woo-addon-demo/shop/)**
 
 #### Full Features List of Featured Products First for WooCommerce:
 🏆 Quickest Turn-around Support
@@ -114,9 +112,12 @@ The free version of the Featured Product First for WooCommerce Plugin displays f
 6. Featured Product First on Sort by Price: High to Low
 7. Featured Product First Settings
 8. Settings and Upgrade Links
-9. Featured Product widget
 
 == Changelog ==
+
+= 1.9.8, October 13, 2026 =
+* TWEAK: Make codebase compatible with Plugin Check Plugins (PCP).
+* TWEAK: Freemius library updated to the latest version.
 
 = 1.9.7, May 22, 2025 =
 * TWEAK: Freemius library updated to the latest version.

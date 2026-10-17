@@ -161,6 +161,7 @@ class WFF_Put_Featured_Product_First {
 		}
 		global $wpdb;
 		$product_ids_for_sql = implode(',', array_map( 'absint', $product_ids ) );
+		// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnquotedComplexPlaceholder, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$sorted_product_ids = $wpdb->get_col( $wpdb->prepare( 'SELECT ID FROM ' . $wpdb->posts . ' WHERE ID IN ( %0s ) ORDER BY %0s %0s', $product_ids_for_sql, $order_field_names, $order ) );
 		return $sorted_product_ids;
 	}
@@ -180,8 +181,10 @@ class WFF_Put_Featured_Product_First {
 		}
 		global $wpdb;
 		$product_ids_for_sql = implode(',', array_map( 'absint', $product_ids ) );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$sorted_product_ids = $wpdb->get_col(
 			$wpdb->prepare(
+				// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnquotedComplexPlaceholder
 				'SELECT post_id FROM ' . $wpdb->postmeta . ' WHERE post_id IN ( %0s ) AND meta_key=%s ORDER BY meta_value %s',
 				$product_ids_for_sql,
 				$meta_key,
@@ -207,7 +210,8 @@ class WFF_Put_Featured_Product_First {
 		}
 		global $wpdb;
 		$product_ids_for_sql = implode( ',', array_map( 'absint', $product_ids ) );
-		$sorted_product_ids = $wpdb->get_col( $wpdb->prepare( 'SELECT product_id FROM ' . $wpdb->wc_product_meta_lookup . ' WHERE product_id	IN ( %0s ) ORDER BY %0s %0s, product_id DESC', $product_ids_for_sql, $field, $order ) );
+		// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnquotedComplexPlaceholder, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$sorted_product_ids = $wpdb->get_col( $wpdb->prepare( 'SELECT product_id FROM ' . $wpdb->wc_product_meta_lookup . ' WHERE product_id IN ( %0s ) ORDER BY %0s %0s, product_id DESC', $product_ids_for_sql, $field, $order ) );
 
 		return $sorted_product_ids;
 	}
@@ -218,6 +222,7 @@ class WFF_Put_Featured_Product_First {
 	 * @return string
 	 */
 	private function get_orderby_value() {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$orderby_value = isset( $_GET['orderby'] ) ? wc_clean( (string) $_GET['orderby'] ) : apply_filters(
 			'woocommerce_default_catalog_orderby',
 			get_option( 'woocommerce_default_catalog_orderby' )

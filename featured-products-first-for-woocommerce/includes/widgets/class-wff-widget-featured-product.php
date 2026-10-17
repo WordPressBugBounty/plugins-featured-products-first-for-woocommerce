@@ -75,11 +75,14 @@ class WFF_Widget_Featured_Product extends WC_Widget {
 				'no_found_rows'  => 1,
 				'post_status'    => 'publish',
 				'post_type'      => 'product',
+				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 				'meta_key'       => '_featured',
+				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 				'meta_value'     => 'yes',
 				'meta_compare'   => '=',
 			);
 		}
+		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 		$query_args['meta_query'] = WC()->query->get_meta_query();
 
 		$r = new WP_Query( $query_args );
@@ -103,8 +106,7 @@ class WFF_Widget_Featured_Product extends WC_Widget {
 		wp_reset_postdata();
 
 		$content = ob_get_clean();
-
-		echo $content;
+		echo $content;  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Content is pre-escaped.
 
 		$this->cache_widget( $args, $content );
 	}

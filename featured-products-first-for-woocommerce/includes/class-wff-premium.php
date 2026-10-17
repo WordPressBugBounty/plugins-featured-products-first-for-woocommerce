@@ -75,7 +75,9 @@ class WFF_Premium {
         }
         global $wpdb;
         $product_ids_for_sql = implode( ',', array_map( 'absint', $product_ids ) );
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         $sorted_product_ids = $wpdb->get_col( $wpdb->prepare(
+            // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnquotedComplexPlaceholder, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
             'SELECT post_id FROM ' . $wpdb->postmeta . ' WHERE post_id IN ( %0s ) AND meta_key=%s ORDER BY meta_value %0s',
             $product_ids_for_sql,
             $meta_key,
@@ -99,6 +101,7 @@ class WFF_Premium {
         }
         global $wpdb;
         $product_ids_for_sql = implode( ',', array_map( 'absint', $product_ids ) );
+        // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnquotedComplexPlaceholder, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         $sorted_product_ids = $wpdb->get_col( $wpdb->prepare(
             'SELECT product_id FROM ' . $wpdb->wc_product_meta_lookup . ' WHERE product_id	IN ( %0s ) ORDER BY %0s %0s, product_id DESC',
             $product_ids_for_sql,
@@ -109,6 +112,7 @@ class WFF_Premium {
     }
 
     private function get_orderby_value() {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $orderby_value = ( isset( $_GET['orderby'] ) ? sanitize_text_field( wp_unslash( $_GET['orderby'] ) ) : apply_filters( 'woocommerce_default_catalog_orderby', get_option( 'woocommerce_default_catalog_orderby' ) ) );
         return $orderby_value;
     }
